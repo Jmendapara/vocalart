@@ -8,14 +8,76 @@ import Sketch from 'react-p5';
 
 class App extends Component {
 
+
+  
+  
+  /*
+
+  "draw a circle"
+
+  "move the circle 50 pixels to the left"
+
+
+  App:
+
+    -create instance of circle
+    -add instance to allShapes[]
+
+    -take the instance of circle from allShapes[] and change its x and y coordinates
+
+
+
+  class Shape{
+
+
+    var triangle = {
+
+
+    }
+
+    var circle = {
+
+      x : 0
+      y : 0
+      d : 5
+
+    }
+
+
+    var line {
+
+
+
+    }
+
+
+
+  }
+
+    circle = {
+      x : 100,
+      y : 100,
+      r : 30,
+
+     // mymethod : function(test) { return something; }
+  }
+    
+*/
+
+
   constructor(){
 
     super();
+
     this.state = {
-      numberOfTracksEntered: 50
+
+      allShapes:[],
+      selectedShape: '',
+
     }
 
     this.handleRecord = this.handleRecord.bind(this);
+
 
   }
 
@@ -25,43 +87,110 @@ class App extends Component {
     window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
     window.SpeechGrammarList = window.webkitSpeechGrammarList || window.SpeechGrammarList;
 
-    let grammar = '#JSGF V1.0; grammar colors; public <color> = aqua | azure | beige | bisque | black | blue | brown | chocolate | coral | crimson | cyan | fuchsia | ghostwhite | gold | goldenrod | gray | green | indigo | ivory | khaki | lavender | lime | linen | magenta | maroon | moccasin | navy | olive | orange | orchid | peru | pink | plum | purple | red | salmon | sienna | silver | snow | tan | teal | thistle | tomato | turquoise | violet | white | yellow ;'
-
     const recognition = new window.SpeechRecognition();
 
-    var speechRecognitionList = new window.SpeechGrammarList();
-    speechRecognitionList.addFromString(grammar, 1);
-
     recognition.continuous = true;
-    recognition.grammars = speechRecognitionList;
-
 
     recognition.onresult = function(event){
+
     console.log(event);
+    //var newText = event.results[(event.results.length-1)].transcript....
+
+    //handleText(newText);...
+
+
     //recognition.re
     //recognition.start();
 
     }
 
-    recognition.continuous=true;
     recognition.start();
 
 
   }
 
+
+ 
   sketch(p) {
+
+    /*class Rectangle {
+
+      drawShape(){
+        p.square(200,200,20);
+      }
+    }
+
+    let square = new Rectangle(); // creating new instance of Polygon Class.
+
+   this.state.allShapes.push(square);
+   
+   -OBJECT FOR EACH SHAPE
+      -EACH SHAPE HAS GLOBAL VARIABLES THAT CONTANT THE PARAMENTER OF THE FUNCTION TO DRAW THAT SHAPE
+   
+*/
+
+   class Circling{
+
+
+    positionX;
+    positionY;
+    radius;
+
+    moveUp(distance){
+
+      this.positionX = this.positionX + distance;
+      this.positionY = this.positionY + distance;
+
+    }
+
+    drawShape(){
+
+      p.circle(this.positionX,this.positionY,this.radius);
+
+    }
+
+
+   }
+
+
+   
+   
     
     p.setup = () => {
+      
       p.createCanvas(window.innerWidth - 100, window.innerHeight - 100);
-      p.background(102);
 
+      let circle1 = new Circling();
+      circle1.positionX=100;
+      circle1.positionY=100;
+      circle1.radius=100;
+   
+      let circle2 = new Circling();
+      circle2.positionX=200;
+      circle2.positionY=200;
+      circle2.radius=100;
+   
+   
+      this.state.allShapes.push(circle1);
+      this.state.allShapes.push(circle2);
+    
     };
 
     p.draw = () => {
+
+      p.background(102);
+
       p.stroke(255);
-      if (p.mouseIsPressed === true) {
-      p.line(p.mouseX, p.mouseY, p.pmouseX, p.pmouseY);
-  }
+      p.fill(255);
+      
+
+      for(var i = 0; i < this.state.allShapes.length; i++){
+
+        this.state.allShapes[i].drawShape();
+
+
+      }
+
     }
 
   }
