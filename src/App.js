@@ -9,62 +9,6 @@ import Sketch from 'react-p5';
 class App extends Component {
 
 
-  
-  
-  /*
-
-  "draw a circle"
-
-  "move the circle 50 pixels to the left"
-
-
-  App:
-
-    -create instance of circle
-    -add instance to allShapes[]
-
-    -take the instance of circle from allShapes[] and change its x and y coordinates
-
-
-
-  class Shape{
-
-
-    var triangle = {
-
-
-    }
-
-    var circle = {
-
-      x : 0
-      y : 0
-      d : 5
-
-    }
-
-
-    var line {
-
-
-
-    }
-
-
-
-  }
-
-    circle = {
-      x : 100,
-      y : 100,
-      r : 30,
-
-     // mymethod : function(test) { return something; }
-  }
-    
-*/
-
-
   constructor(){
 
     super();
