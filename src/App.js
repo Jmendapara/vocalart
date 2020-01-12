@@ -97,7 +97,10 @@ class App extends Component {
    
 */
 
-   class Circling{
+ 
+  /*CIRCLE CLASS*/
+
+  class Circling{
 
 
     positionX;
@@ -106,10 +109,31 @@ class App extends Component {
 
     moveUp(distance){
 
-      this.positionX = this.positionX + distance;
+      //this.positionX = this.positionX + distance;
       this.positionY = this.positionY + distance;
 
     }
+
+
+    moveDown(distance){
+
+      //this.positionX = this.positionX + distance;
+      this.positionY = this.positionY - distance;
+
+    }
+
+
+    moveLeft(distance) {
+     
+      this.positionX = this.positionX - distance;
+ 
+     }
+ 
+     moveRight(distance ) {
+ 
+       this.positionX = this.positionX + distance;
+ 
+     }
 
     drawShape(){
 
@@ -119,6 +143,143 @@ class App extends Component {
 
 
    }
+
+
+   /*SQUARE CLASS*/
+
+   class Square{
+
+
+    positionX;
+    positionY;
+    sideSize;
+
+    moveUp(distance){
+
+      //this.positionX = this.positionX + distance;
+      this.positionY = this.positionY + distance;
+
+    }
+
+    moveDown(distance){
+
+      //this.positionX = this.positionX + distance;
+      this.positionY = this.positionY - distance;
+
+    }
+
+    moveLeft(distance) {
+     
+      this.positionX = this.positionX - distance;
+ 
+     }
+ 
+     moveRight(distance ) {
+ 
+       this.positionX = this.positionX + distance;
+ 
+     }
+
+
+    drawShape(){
+
+      p.square(this.positionX,this.positionY,this.sideSize);
+
+    }
+
+
+   }
+   
+
+   /*ELLIPSE CLASS*/
+    
+   class Ellipse{
+
+
+    positionX;
+    positionY;
+    width;
+    height;
+
+    moveUp(distance){
+
+      //this.positionX = this.positionX + distance;
+      this.positionY = this.positionY + distance;
+
+    }
+
+    moveDown(distance){
+
+      //this.positionX = this.positionX + distance;
+      this.positionY = this.positionY - distance;
+
+    }
+
+    moveLeft(distance) {
+     
+      this.positionX = this.positionX - distance;
+ 
+     }
+ 
+     moveRight(distance ) {
+ 
+       this.positionX = this.positionX + distance;
+ 
+     }
+
+    drawShape(){
+
+      p.ellipse(this.positionX,this.positionY,this.width, this.height);
+
+    }
+
+
+   }
+
+
+   /*RECTANGLE CLASS*/
+
+   class Rectangle{
+
+
+    positionX;
+    positionY;
+    width;
+    height;
+
+    moveUp(distance){
+
+      //this.positionX = this.positionX + distance;
+      this.positionY = this.positionY + distance;
+
+    }
+
+    moveDown(distance){
+
+      //this.positionX = this.positionX + distance;
+      this.positionY = this.positionY - distance;
+
+    }
+
+    moveLeft(distance) {
+     
+     this.positionX = this.positionX - distance;
+
+    }
+
+    moveRight(distance ) {
+
+      this.positionX = this.positionX + distance;
+
+    }
+
+    drawShape(){
+
+      p.rect(this.positionX,this.positionY,this.width, this.height);
+
+    }
+  }
+
     
     p.setup = () => {
       
