@@ -45,3 +45,13 @@
   background-color: orange;
 
 }
+
+.Shapes{
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  flex: .3;
+
+  background-color: greenyellow;
+}
