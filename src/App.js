@@ -100,40 +100,34 @@ class App extends Component {
  
   /*CIRCLE CLASS*/
 
-  class Circling{
+  class Shape{
 
+    moveRight(distance ) {
+ 
+      this.positionX = this.positionX + distance;
+
+    }
+
+  }
+
+  class Circling extends Shape{
 
     positionX;
     positionY;
     radius;
 
     moveUp(distance){
-
-      //this.positionX = this.positionX + distance;
       this.positionY = this.positionY + distance;
-
     }
-
 
     moveDown(distance){
-
-      //this.positionX = this.positionX + distance;
       this.positionY = this.positionY - distance;
-
     }
 
-
     moveLeft(distance) {
-     
       this.positionX = this.positionX - distance;
- 
      }
  
-     moveRight(distance ) {
- 
-       this.positionX = this.positionX + distance;
- 
-     }
 
     drawShape(){
 
@@ -312,6 +306,7 @@ class App extends Component {
       for(var i = 0; i < this.state.allShapes.length; i++){
 
         this.state.allShapes[i].drawShape();
+        this.state.allShapes[i].moveRight(10);
 
       }
 
