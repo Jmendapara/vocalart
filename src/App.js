@@ -78,6 +78,93 @@ class App extends Component {
   }
 
 
+
+  handleRequest(request) {
+
+
+  class Shape {
+
+    positionX;
+    positionY;
+
+    moveUp(distance){
+      this.positionY = this.positionY + distance;
+    }
+
+    moveDown(distance){
+      this.positionY = this.positionY - distance;
+    }
+
+    moveLeft(distance) {
+      this.positionX = this.positionX - distance;
+     }
+ 
+     moveRight(distance ) {
+       this.positionX = this.positionX + distance;
+     }
+
+  }
+
+ 
+  /*CIRCLE CLASS*/
+
+  class Circling extends Shape{
+
+    radius;
+
+    drawShape(){
+      p.circle(this.positionX,this.positionY,this.radius);
+    }
+
+
+   }
+
+
+   /*SQUARE CLASS*/
+
+   class Square extends Shape{
+
+    sideSize;
+
+    drawShape(){
+      p.square(this.positionX,this.positionY,this.sideSize);
+    }
+
+
+   }
+   
+
+   /*ELLIPSE CLASS*/
+    
+   class Ellipse extends Shape{
+
+    width;
+    height;
+
+    drawShape(){
+      p.ellipse(this.positionX,this.positionY,this.width, this.height);
+    }
+
+
+   }
+
+
+   /*RECTANGLE CLASS*/
+
+   class Rectangle extends Shape{
+
+    width;
+    height;
+
+    drawShape(){
+      p.rect(this.positionX,this.positionY,this.width, this.height);
+    }
+  }
+
+
+
+  }
+
  
   sketch(p) {
 
@@ -96,183 +183,6 @@ class App extends Component {
       -EACH SHAPE HAS GLOBAL VARIABLES THAT CONTANT THE PARAMENTER OF THE FUNCTION TO DRAW THAT SHAPE
    
 */
-
- 
-  /*CIRCLE CLASS*/
-
-  class Shape{
-
-    moveRight(distance ) {
- 
-      this.positionX = this.positionX + distance;
-
-    }
-
-  }
-
-  class Circling extends Shape{
-
-    positionX;
-    positionY;
-    radius;
-
-    moveUp(distance){
-      this.positionY = this.positionY + distance;
-    }
-
-    moveDown(distance){
-      this.positionY = this.positionY - distance;
-    }
-
-    moveLeft(distance) {
-      this.positionX = this.positionX - distance;
-     }
- 
-
-    drawShape(){
-
-      p.circle(this.positionX,this.positionY,this.radius);
-
-    }
-
-
-   }
-
-
-   /*SQUARE CLASS*/
-
-   class Square{
-
-
-    positionX;
-    positionY;
-    sideSize;
-
-    moveUp(distance){
-
-      //this.positionX = this.positionX + distance;
-      this.positionY = this.positionY + distance;
-
-    }
-
-    moveDown(distance){
-
-      //this.positionX = this.positionX + distance;
-      this.positionY = this.positionY - distance;
-
-    }
-
-    moveLeft(distance) {
-     
-      this.positionX = this.positionX - distance;
- 
-     }
- 
-     moveRight(distance ) {
- 
-       this.positionX = this.positionX + distance;
- 
-     }
-
-
-    drawShape(){
-
-      p.square(this.positionX,this.positionY,this.sideSize);
-
-    }
-
-
-   }
-   
-
-   /*ELLIPSE CLASS*/
-    
-   class Ellipse{
-
-
-    positionX;
-    positionY;
-    width;
-    height;
-
-    moveUp(distance){
-
-      //this.positionX = this.positionX + distance;
-      this.positionY = this.positionY + distance;
-
-    }
-
-    moveDown(distance){
-
-      //this.positionX = this.positionX + distance;
-      this.positionY = this.positionY - distance;
-
-    }
-
-    moveLeft(distance) {
-     
-      this.positionX = this.positionX - distance;
- 
-     }
- 
-     moveRight(distance ) {
- 
-       this.positionX = this.positionX + distance;
- 
-     }
-
-    drawShape(){
-
-      p.ellipse(this.positionX,this.positionY,this.width, this.height);
-
-    }
-
-
-   }
-
-
-   /*RECTANGLE CLASS*/
-
-   class Rectangle{
-
-
-    positionX;
-    positionY;
-    width;
-    height;
-
-    moveUp(distance){
-
-      //this.positionX = this.positionX + distance;
-      this.positionY = this.positionY + distance;
-
-    }
-
-    moveDown(distance){
-
-      //this.positionX = this.positionX + distance;
-      this.positionY = this.positionY - distance;
-
-    }
-
-    moveLeft(distance) {
-     
-     this.positionX = this.positionX - distance;
-
-    }
-
-    moveRight(distance ) {
-
-      this.positionX = this.positionX + distance;
-
-    }
-
-    drawShape(){
-
-      p.rect(this.positionX,this.positionY,this.width, this.height);
-
-    }
-  }
 
     
     p.setup = () => {
