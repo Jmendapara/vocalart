@@ -6,6 +6,7 @@ import logo from './logo.svg';
 import './App.css';
 import Sketch from 'react-p5';
 
+
 class App extends Component {
 
   /*Trying to learn github
@@ -49,6 +50,7 @@ class App extends Component {
     .then(
       (result) => {
       console.log(result);
+      this.handleRequest(result);
       }
     );
 
@@ -81,7 +83,6 @@ class App extends Component {
 
   handleRequest(request) {
 
-
   class Shape {
 
     positionX;
@@ -110,7 +111,12 @@ class App extends Component {
 
   class Circling extends Shape{
 
+    shapeType;
     radius;
+
+    Circling(){
+      this.shapeType = "circle";
+    }
 
     drawShape(){
       p.circle(this.positionX,this.positionY,this.radius);
@@ -161,6 +167,13 @@ class App extends Component {
     }
   }
 
+
+
+  //logic for handling the response is...
+
+  //which class we want to create an instance of 
+
+  //push to state.allShapes
 
 
   }
