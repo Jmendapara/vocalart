@@ -25,6 +25,8 @@ class App extends Component {
 
       allShapes:[],
       selectedShape: '',
+      canvasHeight: '',
+      canvasWidth: ''
 
     }
 
@@ -49,6 +51,7 @@ class App extends Component {
     .then(
       (result) => {
       console.log(result);
+      this.handleRequest(result);
       }
     );
 
@@ -87,6 +90,11 @@ class App extends Component {
     positionX;
     positionY;
 
+    constructor(positionX, positionY) {
+      this.positionX = positionX;
+      this.positionY = positionY;
+    }
+
     moveUp(distance){
       this.positionY = this.positionY + distance;
     }
@@ -101,7 +109,7 @@ class App extends Component {
       this.positionX = this.positionX - distance;
      }
  
-     moveRight(distance ) {
+    moveRight(distance ) {
        this.positionX = this.positionX + distance;
      }
 
@@ -113,10 +121,16 @@ class App extends Component {
   class Circling extends Shape{
 
     radius;
-
-    drawShape(){
-      p.circle(this.positionX,this.positionY,this.radius);
+    shapeType;
+    
+    constructor(positionX, positionY, radius) {
+      super();
+      this.positionX = positionX;
+      this.positionY = positionY;
+      this.shapeType = "circle";
+      this.radius = radius;
     }
+  
 
 
    }
@@ -126,12 +140,16 @@ class App extends Component {
 
    class Square extends Shape{
 
+    shapeType;
     sideSize;
 
-    drawShape(){
-      p.square(this.positionX,this.positionY,this.sideSize);
-    }
+    constructor(positionx, positionY, sideSize) {
 
+      super();
+      this.shapeType = "square";
+      this.sideSize = sideSize;
+
+    }
 
    }
    
@@ -139,12 +157,17 @@ class App extends Component {
    /*ELLIPSE CLASS*/
     
    class Ellipse extends Shape{
-
+    shapeType;
     width;
     height;
+    
+    constructor(positionX, positionY, width, height) {
 
-    drawShape(){
-      p.ellipse(this.positionX,this.positionY,this.width, this.height);
+        super();
+        this.shapeType = "ellipse";
+        this.width = width;
+        this.height = height;
+
     }
 
 
@@ -154,14 +177,28 @@ class App extends Component {
    /*RECTANGLE CLASS*/
 
    class Rectangle extends Shape{
-
+    shapeType;
     width;
     height;
 
-    drawShape(){
-      p.rect(this.positionX,this.positionY,this.width, this.height);
+    constructor(positionX, positionY, width, height) {
+        super();
+        this.width = width;
+        this.height = height;
     }
+
   }
+
+
+
+      let circle1 = new Circling(100, 100, 100);
+  
+   
+      let circle2 = new Circling(200, 200, 100);
+   
+      this.state.allShapes.push(circle1);
+     // console.log(this.state.allShapes[0]);
+      this.state.allShapes.push(circle2);
 
 
 
@@ -190,20 +227,6 @@ class App extends Component {
     p.setup = () => {
       
       p.createCanvas(window.innerWidth - 100, window.innerHeight - 100);
-
-      let circle1 = new Circling();
-      circle1.positionX=100;
-      circle1.positionY=100;
-      circle1.radius=100;
-   
-      let circle2 = new Circling();
-      circle2.positionX=200;
-      circle2.positionY=200;
-      circle2.radius=100;
-   
-   
-      this.state.allShapes.push(circle1);
-      this.state.allShapes.push(circle2);
     
     };
 
@@ -214,10 +237,35 @@ class App extends Component {
       p.stroke(255);
       p.fill(255);
       
+  
 
       for(var i = 0; i < this.state.allShapes.length; i++){
+      
+        let tempShape = this.state.allShapes[i];
+        console.log(tempShape);
+        //console.log("hi");
 
-        this.state.allShapes[i].drawShape();
+
+        switch (tempShape.shapeType) {
+
+          case "circle":
+              p.circle(tempShape.positionX,tempShape.positionY,tempShape.radius);
+              break;
+
+          case "square":
+              p.square(tempShape.positionX,tempShape.positionY,tempShape.sideSize);
+              break;
+
+          case "rectangle":
+              p.rect(tempShape.positionX,tempShape.positionY,tempShape.width, tempShape.height);
+              break;
+
+          case "ellipse":
+              p.ellipse(tempShape.positionX,tempShape.positionY,tempShape.width, tempShape.height);
+              break;
+
+        }
+       
 
       }
 
