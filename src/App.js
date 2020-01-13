@@ -5,6 +5,9 @@ import p5 from "p5";
 import logo from './logo.svg';
 import './App.css';
 import Sketch from 'react-p5';
+const Shapes = require('./Shapes.js') 
+
+
 
 
 class App extends Component {
@@ -26,6 +29,8 @@ class App extends Component {
 
       allShapes:[],
       selectedShape: '',
+      canvasHeight: '',
+      canvasWidth: '',
 
     }
 
@@ -83,89 +88,17 @@ class App extends Component {
 
   handleRequest(request) {
 
-  class Shape {
-
-    positionX;
-    positionY;
-
-    moveUp(distance){
-      this.positionY = this.positionY + distance;
-    }
-
-    moveDown(distance){
-      this.positionY = this.positionY - distance;
-    }
-
-    moveLeft(distance) {
-      this.positionX = this.positionX - distance;
-     }
- 
-     moveRight(distance ) {
-       this.positionX = this.positionX + distance;
-     }
-
-  }
-
- 
-  /*CIRCLE CLASS*/
-
-  class Circling extends Shape{
-
-    shapeType;
-    radius;
-
-    Circling(){
-      this.shapeType = "circle";
-    }
-
-    drawShape(){
-      p.circle(this.positionX,this.positionY,this.radius);
-    }
 
 
-   }
 
-
-   /*SQUARE CLASS*/
-
-   class Square extends Shape{
-
-    sideSize;
-
-    drawShape(){
-      p.square(this.positionX,this.positionY,this.sideSize);
-    }
-
-
-   }
+      let circle1 = new Shapes.Circling(100, 100, 100);
+  
    
-
-   /*ELLIPSE CLASS*/
-    
-   class Ellipse extends Shape{
-
-    width;
-    height;
-
-    drawShape(){
-      p.ellipse(this.positionX,this.positionY,this.width, this.height);
-    }
-
-
-   }
-
-
-   /*RECTANGLE CLASS*/
-
-   class Rectangle extends Shape{
-
-    width;
-    height;
-
-    drawShape(){
-      p.rect(this.positionX,this.positionY,this.width, this.height);
-    }
-  }
+      let circle2 = new Shapes.Circling(200, 200, 100);
+   
+      this.state.allShapes.push(circle1);
+     // console.log(this.state.allShapes[0]);
+      this.state.allShapes.push(circle2);
 
 
 
@@ -201,20 +134,6 @@ class App extends Component {
     p.setup = () => {
       
       p.createCanvas(window.innerWidth - 100, window.innerHeight - 100);
-
-      let circle1 = new Circling();
-      circle1.positionX=100;
-      circle1.positionY=100;
-      circle1.radius=100;
-   
-      let circle2 = new Circling();
-      circle2.positionX=200;
-      circle2.positionY=200;
-      circle2.radius=100;
-   
-   
-      this.state.allShapes.push(circle1);
-      this.state.allShapes.push(circle2);
     
     };
 
@@ -225,11 +144,35 @@ class App extends Component {
       p.stroke(255);
       p.fill(255);
       
+  
 
       for(var i = 0; i < this.state.allShapes.length; i++){
+      
+        let tempShape = this.state.allShapes[i];
+        console.log(tempShape);
+        //console.log("hi");
 
-        this.state.allShapes[i].drawShape();
-        this.state.allShapes[i].moveRight(10);
+
+        switch (tempShape.shapeType) {
+
+          case "circle":
+              p.circle(tempShape.positionX,tempShape.positionY,tempShape.radius);
+              break;
+
+          case "square":
+              p.square(tempShape.positionX,tempShape.positionY,tempShape.sideSize);
+              break;
+
+          case "rectangle":
+              p.rect(tempShape.positionX,tempShape.positionY,tempShape.width, tempShape.height);
+              break;
+
+          case "ellipse":
+              p.ellipse(tempShape.positionX,tempShape.positionY,tempShape.width, tempShape.height);
+              break;
+
+        }
+       
 
       }
 
