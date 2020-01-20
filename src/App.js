@@ -89,7 +89,7 @@ class App extends Component {
       let circle3 = new Circle(200, 600, 100);
 
    
-      this.state.allShapes.push(circle1);
+     // this.state.allShapes.push(circle1);
 
       this.state.allShapes.push(circle2);
     //console.log(this.state.allShapes[0]);
@@ -160,7 +160,7 @@ class App extends Component {
     var i;
     var html;
     //return "<h1>" + this.state.allShapes.length + "</h1>";
-    for(i = 0; i < this.state.allShapes.length; i++) {
+    for(i =  0; i < this.state.allShapes.length; i++) {
       html += "<div>" + this.state.allShapes[i].shapeType + "</div>"
     }
     return html;
