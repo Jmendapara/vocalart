@@ -5,21 +5,12 @@ import p5 from "p5";
 import logo from './logo.svg';
 import './App.css';
 import Sketch from 'react-p5';
-const Shapes = require('./Shapes.js') 
-
-
-
+import Circle from './Shapes/Circle.js'; 
+import Rectangle from './Shapes/Circle.js'; 
+import Ellipse from './Shapes/Circle.js'; 
+import Square from './Shapes/Circle.js'; 
 
 class App extends Component {
-
-  /*Trying to learn github
-  
-  V3
-
-  JAY TESTING*/
-
-  
-
 
   constructor(){
 
@@ -31,13 +22,12 @@ class App extends Component {
       selectedShape: '',
       canvasHeight: '',
       canvasWidth: '',
+      backgroundColor: 'white'
 
     }
 
     this.handleRecord = this.handleRecord.bind(this);
     this.handleSpeechInput = this.handleSpeechInput.bind(this);
-
-
 
   }
 
@@ -89,47 +79,30 @@ class App extends Component {
   handleRequest(request) {
 
 
-
-
-      let circle1 = new Shapes.Circling(100, 100, 100);
+      let circle1 = new Circle(100, 100, 100);
   
    
-      let circle2 = new Shapes.Circling(200, 200, 100);
+      let circle2 = new Circle(200, 400, 100);
+
+      let circle3 = new Circle(200, 600, 100);
+
    
       this.state.allShapes.push(circle1);
-     // console.log(this.state.allShapes[0]);
+
       this.state.allShapes.push(circle2);
 
 
+      this.state.allShapes.push(circle3);
 
-  //logic for handling the response is...
 
-  //which class we want to create an instance of 
 
-  //push to state.allShapes
+      this.setState({selectedShape:circle2});
 
 
   }
 
  
   sketch(p) {
-
-    /*class Rectangle {
-
-      drawShape(){
-        p.square(200,200,20);
-      }
-    }
-
-    let square = new Rectangle(); // creating new instance of Polygon Class.
-
-   this.state.allShapes.push(square);
-   
-   -OBJECT FOR EACH SHAPE
-      -EACH SHAPE HAS GLOBAL VARIABLES THAT CONTANT THE PARAMENTER OF THE FUNCTION TO DRAW THAT SHAPE
-   
-*/
-
     
     p.setup = () => {
       
@@ -139,18 +112,14 @@ class App extends Component {
 
     p.draw = () => {
 
-      p.background(102);
+      p.background(this.state.backgroundColor);
 
       p.stroke(255);
-      p.fill(255);
-      
-  
 
       for(var i = 0; i < this.state.allShapes.length; i++){
       
         let tempShape = this.state.allShapes[i];
-        console.log(tempShape);
-        //console.log("hi");
+        p.fill(tempShape.color); 
 
 
         switch (tempShape.shapeType) {
