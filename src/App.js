@@ -5,8 +5,8 @@ import p5 from "p5";
 import logo from './logo.svg';
 import './App.css';
 import Sketch from 'react-p5';
-const Shapes = require('./Shapes.js') 
-
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+const Shapes = require('./Shapes.js')
 
 
 class App extends Component {
@@ -80,6 +80,7 @@ class App extends Component {
     }
 
     recognition.start();
+  
 
   }
 
@@ -88,7 +89,7 @@ class App extends Component {
   handleRequest(request) {
 
 
-
+      
 
 
       let circle1 = new Shapes.Circling(100, 100, 100);
@@ -99,6 +100,7 @@ class App extends Component {
       this.state.allShapes.push(circle1);
      // console.log(this.state.allShapes[0]);
       this.state.allShapes.push(circle2);
+    //console.log(this.state.allShapes[0]);
 
 
 
@@ -174,14 +176,34 @@ class App extends Component {
   }
 
 
+  //returns an html string to be 
+
+  getAllShapes() {
+    //alert("hi");
+    var i;
+    var html;
+    //return "<h1>" + this.state.allShapes.length + "</h1>";
+    for(i = 0; i < this.state.allShapes.length; i++) {
+      html += "<div>" + this.state.allShapes[i].shapeType + "</div>"
+    }
+    return html;
+    //return "<h1>hello</h1><h2>yooo</h2>";
+
+  }
+
+
   render() {
     return (
       <div className="App">
-        <div className = "Canvas">
+        <div className="Canvas">
           <P5Wrapper sketch={this.sketch.bind(this)} />
         </div>
-        <div className = "Controls">
+        <div className="Controls">
           <button onClick={() => this.handleRecord()}>RECORD</button>
+        </div>
+        
+        <div className="Shapes">
+          {ReactHtmlParser (this.getAllShapes())}
         </div>
       </div>
     );
